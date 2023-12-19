@@ -17,8 +17,14 @@ const operations = {
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  const firstNumber = Number(event.target.firstNumber.value);
-  const secondNumber = Number(event.target.secondNumber.value);
-  const operation = event.target.operation.value;
-  output.innerText = operations[operation](firstNumber, secondNumber);
+  try {
+    //wenn folgendes nicht ausgeführt werden kann...
+    const firstNumber = Number(event.target.firstNumber.value);
+    const secondNumber = Number(event.target.secondNumber.value);
+    const operation = event.target.operation.value;
+    output.innerText = operations[operation](firstNumber, secondNumber);
+    //..benutze folgenden catch block um stattdessen einen fehler (als nix) auszugeben
+  } catch (error) {
+    output.innerText = `Error: ${error.message}`;
+  }
 });
